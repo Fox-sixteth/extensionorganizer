@@ -9,10 +9,9 @@ export interface RawData {
     categories: string[]; 
 }
 
-// 用户自定义的文件夹
 export interface CustomData {
     id: string;           
-    name: string;         
-    extensions: string[]; 
+    belomg: string;         
+    isHidden:boolean; 
 }
 

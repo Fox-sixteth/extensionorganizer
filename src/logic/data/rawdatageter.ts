@@ -1,5 +1,6 @@
+//提供：提供数据的方法
 import * as vscode from"vscode";
-import { RawData } from "../interfaces/datas";
+import { RawData } from "../../interfaces/datas";
 
 export function getRawData(): RawData[] {
     return vscode.extensions.all
