@@ -1,4 +1,4 @@
-//提供：提供数据的方法
+//提供：提供原生数据的方法
 import * as vscode from"vscode";
 import { RawData } from "../../interfaces/datas";
 
@@ -14,3 +14,5 @@ export function getRawData(): RawData[] {
             categories: ext.packageJSON.categories || ['未获取']
         }));
 }
+
+
