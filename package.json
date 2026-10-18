@@ -13,10 +13,7 @@
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "extensionorganizer.helloWorld",
-        "title": "Hello World"
-      }
+
     ]
   },
   "scripts": {
