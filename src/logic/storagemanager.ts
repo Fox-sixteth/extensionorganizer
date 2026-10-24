@@ -10,10 +10,14 @@ export function initStorage(rawcontext:vscode.ExtensionContext){
     configs = context.globalState.get(STORAGE_KEY) || {};
 }
 
-export function getConfigs(): Record<string, CustomData> {
+export function getCustomData(): Record<string, CustomData> {
     return configs;
 }
 
 export async function saveCustomData(data:Record<string, CustomData>){
     await context.globalState.update(STORAGE_KEY, data);
+}
+
+export function update_CustomData(){
+    configs = context.globalState.get(STORAGE_KEY) || {};
 }
