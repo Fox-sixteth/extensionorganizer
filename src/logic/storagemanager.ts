@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { CustomData } from '../interfaces/datas';
-import { STORAGE_KEY } from '../extension';
+import { STORAGE_KEY } from '../interfaces/constant';
 
 let context:vscode.ExtensionContext;
 let configs: Record<string, CustomData>;

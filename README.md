@@ -1,20 +1,10 @@
-# extensionorganizer README
+# README
 
-This is the README for your extension "extensionorganizer". After writing up a brief description, we recommend including the following sections.
+一句话：用来整理插件的插件（有生之年完工）
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+啥都没做好，目前
 
 ## Extension Settings
 
@@ -37,7 +27,7 @@ Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 
-Initial release of ...
+老大我们真的有机会做出成品吗
 
 ### 1.0.1
 
@@ -62,10 +52,5 @@ You can author your README using Visual Studio Code. Here are some useful editor
 * Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
 * Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
 * Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**

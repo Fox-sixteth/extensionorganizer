@@ -1,0 +1,111 @@
+body {
+    font-family: var(--vscode-font-family);
+    font-size: 13px;
+    color: var(--vscode-foreground);
+    padding: 0;
+    margin: 0;
+    background: var(--vscode-sideBar-background);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 工具栏 */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--vscode-sideBarSectionHeader-border);
+    font-weight: bold;
+}
+#toggle-hidden {
+    background: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: none;
+    padding: 2px 8px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+/* 内容区 */
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+/* 文件夹标题 */
+.folder-title {
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--vscode-descriptionForeground);
+    text-transform: uppercase;
+}
+
+/* 卡片样式 */
+.ext-item {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    height: 52px;
+    cursor: pointer;
+}
+.ext-item:hover {
+    background: var(--vscode-list-hoverBackground);
+}
+
+.ext-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.ext-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ext-name {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ext-desc, .ext-version {
+    font-size: 11px;
+    color: var(--vscode-descriptionForeground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 操作按钮（悬浮显示） */
+.ext-actions {
+    display: none;
+}
+.ext-item:hover .ext-actions {
+    display: block;
+}
+.action-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--vscode-icon-foreground);
+    font-size: 16px;
+    padding: 4px;
+}
+
+/* 隐藏区特殊样式 */
+.hidden-section .ext-item {
+    opacity: 0.6;
+}
+.hidden-section .ext-name {
+    text-decoration: line-through;
+}
