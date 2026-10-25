@@ -14,7 +14,27 @@
   "contributes": {
     "commands": [
 
-    ]
+    ],
+    "viewsContainers": {
+        "activitybar": [
+            {
+                "id": "extension-organizer-container",
+                "title": "扩展整理",
+                "icon": "$(extensions)" 
+            }
+        ]
+    },
+  
+    "views": {
+        "extension-organizer-container": [
+            {
+                "type": "webview",
+                "id": "extensionOrganizer.view", 
+                "name": "扩展",
+                "icon": "$(extensions)"
+            }
+        ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

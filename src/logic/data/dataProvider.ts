@@ -23,9 +23,9 @@ export function update(){
 
 export function getOrganizedData() {
 
-    Object.values(cachedRawData).forEach(rawItem => {
+    Object.values(cachedRawData||{}).forEach(rawItem => {
     cachedOrganizedData.push(
         createOrganizedData(rawItem,cachedCustomData[rawItem.id])
-    );}
     );
+});
 }

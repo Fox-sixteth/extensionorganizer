@@ -1,11 +1,11 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import { getCustomData, saveCustomData } from '../storagemanager'; // 引入你的存储逻辑
-import { DEFAULT_DESCRIPTION } from '../../interfaces/constant';
+import { DEFAULT_DESCRIPTION, VIEW_ID } from '../../interfaces/constant';
 import { getOrganizedData } from './dataProvider';
 
 export class ExtensionOrganizerViewProvider implements vscode.WebviewViewProvider {
-    public static readonly viewType = 'extensionOrganizer.view';
+    public static readonly viewType = VIEW_ID;
     private _view?: vscode.WebviewView;
 
     constructor(private readonly _extensionUri: vscode.Uri) {}
@@ -64,20 +64,18 @@ export class ExtensionOrganizerViewProvider implements vscode.WebviewViewProvide
         });
     }
 
-    // 读取 HTML 文件并替换变量
+//HTML初始化
     private _getHtmlForWebview(webview: vscode.Webview): string {
         const htmlPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'index.html');
         let html = fs.readFileSync(htmlPath.fsPath, 'utf8');
 
-        // 获取转换后的 URI
         const styleUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'style.css'));
         const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'main.js'));
 
-        // 替换 HTML 里的占位符
         html = html.replace('{{styleUri}}', styleUri.toString());
         html = html.replace('{{scriptUri}}', scriptUri.toString());
 
-        // 注入 CSP 安全策略（重要！否则 CSS/JS 可能不生效）
+        // 注入 CSP 安全策略
         const csp = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} https: data:; style-src ${webview.cspSource}; script-src ${webview.cspSource};">`;
         html = html.replace('<head>', `<head>\n${csp}`);
 
