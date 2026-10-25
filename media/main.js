@@ -5,11 +5,13 @@ const rootArea = document.getElementById('root-area');
 const hiddenArea = document.getElementById('hidden-area');
 const hiddenList = document.getElementById('hidden-list');
 const toggleBtn = document.getElementById('toggle-hidden');
+const refreshBtn = document.getElementById('refresh-btn');
 
 window.addEventListener('message', event => {
     const message = event.data;
     if (message.command === 'render') {
         renderData(message.data);
+        //console.info("消息收到：",message);
     }
 });
 
@@ -100,4 +102,8 @@ toggleBtn.addEventListener('click', () => {
     const isHiddenVisible = hiddenArea.style.display === 'block';
     hiddenArea.style.display = isHiddenVisible ? 'none' : 'block';
     toggleBtn.innerText = isHiddenVisible ? '显示已隐藏' : '隐藏已隐藏';
+});
+
+refreshBtn.addEventListener('click', () => {
+    vscode.postMessage({ command: 'refresh' });
 });

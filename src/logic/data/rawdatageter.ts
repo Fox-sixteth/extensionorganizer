@@ -10,7 +10,7 @@ export function getRawData(): RawData[] {
             name: ext.packageJSON.displayName || ext.id,
             description: ext.packageJSON.description || '未获取',
             version: ext.packageJSON.version || '?',
-            iconUri: '',
+            iconUri: ext.packageJSON.iconUri|| '',
             categories: ext.packageJSON.categories || ['未获取']
         }));
 }

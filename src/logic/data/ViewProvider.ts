@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
-import { getCustomData, saveCustomData } from '../storagemanager'; // 引入你的存储逻辑
+import { getCustomData, saveCustomData } from '../storagemanager'; 
 import { DEFAULT_DESCRIPTION, VIEW_ID } from '../../interfaces/constant';
-import { getOrganizedData } from './dataProvider';
+import { getOrganizedData, update } from './dataProvider';
 
 export class ExtensionOrganizerViewProvider implements vscode.WebviewViewProvider {
     public static readonly viewType = VIEW_ID;
@@ -17,10 +17,8 @@ export class ExtensionOrganizerViewProvider implements vscode.WebviewViewProvide
             enableScripts: true,
             localResourceRoots: [vscode.Uri.joinPath(this._extensionUri, 'media')]
         };
-
         webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
-        //处理前端消息
         webviewView.webview.onDidReceiveMessage(async (message) => {
             const configs = getCustomData();
             
@@ -46,22 +44,28 @@ export class ExtensionOrganizerViewProvider implements vscode.WebviewViewProvide
                 case 'openExtension':
                     vscode.commands.executeCommand('extension.open', message.extId);
                     break;
+                case 'refresh':
+                    this.refresh();
+                    break;
             }
-        });
+            });
+        
 
         this.updateWebview();
     }
 
-    // 发送数据给前端
     public updateWebview() {
         if (!this._view) {return;}
 
         const finalData = getOrganizedData(); 
 
-        this._view.webview.postMessage({
-            command: 'render',
-            data: finalData
-        });
+        //console.log("后端发送数据:", finalData);
+        if (!finalData) {
+            this._view.webview.postMessage({
+                command: 'render',
+                data: finalData
+            });
+        }
     }
 
 //HTML初始化
@@ -76,9 +80,21 @@ export class ExtensionOrganizerViewProvider implements vscode.WebviewViewProvide
         html = html.replace('{{scriptUri}}', scriptUri.toString());
 
         // 注入 CSP 安全策略
-        const csp = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} https: data:; style-src ${webview.cspSource}; script-src ${webview.cspSource};">`;
+        const csp = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} https: data:; style-src ${webview.cspSource} 'unsafe-inline'; script-src ${webview.cspSource};">`;
         html = html.replace('<head>', `<head>\n${csp}`);
 
         return html;
+    }
+ public refresh() {
+    update();
+        if (!this._view){ 
+             console.error("致命错误：_view  undefined");
+            return; };
+        const dataArray = getOrganizedData(); 
+        
+        this._view.webview.postMessage({
+            command: 'render',
+            data: dataArray
+        });
     }
 }

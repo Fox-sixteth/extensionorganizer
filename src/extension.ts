@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 import { ExtensionOrganizerViewProvider } from './logic/data/ViewProvider';
 import { VIEW_ID } from './interfaces/constant';
+import { initStorage } from './logic/storagemanager';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -20,6 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 	*/
+	initStorage(context);
 	context.subscriptions.push(
         vscode.window.registerWebviewViewProvider(VIEW_ID, 
             new ExtensionOrganizerViewProvider(context.extensionUri))

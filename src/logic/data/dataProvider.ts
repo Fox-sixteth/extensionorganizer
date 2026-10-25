@@ -21,11 +21,12 @@ export function update(){
     },{} as Record<string,RawData>);
 }
 
-export function getOrganizedData() {
-
+export function getOrganizedData():OrganizedData[] {
+    //console.log("1. 原始扩展数据数量：", Object.keys(cachedRawData || {}).length);
     Object.values(cachedRawData||{}).forEach(rawItem => {
     cachedOrganizedData.push(
         createOrganizedData(rawItem,cachedCustomData[rawItem.id])
     );
 });
+ return cachedOrganizedData;
 }
